@@ -2,5 +2,9 @@ backend/target/
 frontend/node_modules/
 frontend/dist/
 .idea/
+.claude/
+.superpowers/
+uploads/
+backend/uploads/
 .DS_Store
 *.log
