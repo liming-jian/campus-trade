@@ -85,28 +85,195 @@
   - `/ws -> ws://localhost:8080`
   - `/uploads -> http://localhost:8080`
 
-## 目录结构（简版）
+## 目录结构（完整版）
 ```
 .
-├─ backend/                # Spring Boot 后端
-│  ├─ src/main/java/com/campus_trade/
-│  │  ├─ controller/       # REST API
-│  │  ├─ service/          # 业务逻辑
-│  │  ├─ entity/           # 数据实体（对应表）
-│  │  ├─ mapper/           # MyBatis-Plus Mapper
-│  │  ├─ config/           # Security/JWT/CORS/MyBatis等配置
-│  │  └─ websocket/        # WebSocket 处理器
-│  └─ src/main/resources/
-│     └─ application.yml
-├─ frontend/               # Vue3 前端
-│  ├─ src/
-│  │  ├─ api/              # axios封装与接口
-│  │  ├─ router/           # 路由
-│  │  ├─ stores/           # Pinia
-│  │  ├─ views/            # 页面（user/admin）
-│  │  └─ components/       # 组件
-│  └─ vite.config.js
-└─ uploads/                # 本地上传目录（运行后产生）
+├─ .agents/
+│  └─ skills/
+│     └─ design-taste-frontend/
+│        └─ SKILL.md
+├─ backend/
+│  ├─ campus-trade-backend.iml
+│  ├─ pom.xml
+│  └─ src/
+│     ├─ main/
+│     │  ├─ java/
+│     │  │  └─ com/
+│     │  │     └─ campus_trade/
+│     │  │        ├─ CampusTradeApplication.java
+│     │  │        ├─ common/
+│     │  │        │  ├─ FileUploadUtils.java
+│     │  │        │  ├─ GlobalExceptionHandler.java
+│     │  │        │  └─ Result.java
+│     │  │        ├─ config/
+│     │  │        │  ├─ CorsConfig.java
+│     │  │        │  ├─ DataInitializer.java
+│     │  │        │  ├─ JwtAuthFilter.java
+│     │  │        │  ├─ JwtUtils.java
+│     │  │        │  ├─ MyMetaObjectHandler.java
+│     │  │        │  ├─ MybatisPlusConfig.java
+│     │  │        │  ├─ SecurityConfig.java
+│     │  │        │  └─ WebMvcConfig.java
+│     │  │        ├─ controller/
+│     │  │        │  ├─ AddressController.java
+│     │  │        │  ├─ AdminController.java
+│     │  │        │  ├─ AdminManagementController.java
+│     │  │        │  ├─ AuthController.java
+│     │  │        │  ├─ CategoryController.java
+│     │  │        │  ├─ ChatController.java
+│     │  │        │  ├─ FavoriteController.java
+│     │  │        │  ├─ OrderController.java
+│     │  │        │  └─ ProductController.java
+│     │  │        ├─ dto/
+│     │  │        │  ├─ AddressDTO.java
+│     │  │        │  ├─ AddressRequest.java
+│     │  │        │  ├─ AdminLoginRequest.java
+│     │  │        │  ├─ ConversationDTO.java
+│     │  │        │  ├─ LoginRequest.java
+│     │  │        │  ├─ MessageDTO.java
+│     │  │        │  ├─ OrderDTO.java
+│     │  │        │  ├─ OrderRequest.java
+│     │  │        │  ├─ ProductDTO.java
+│     │  │        │  ├─ ProductRequest.java
+│     │  │        │  ├─ RegisterRequest.java
+│     │  │        │  ├─ ResetPwdRequest.java
+│     │  │        │  ├─ SendCodeRequest.java
+│     │  │        │  ├─ UserDTO.java
+│     │  │        │  ├─ VerifyRequest.java
+│     │  │        │  └─ (其他DTO同目录)
+│     │  │        ├─ entity/
+│     │  │        │  ├─ Address.java
+│     │  │        │  ├─ Admin.java
+│     │  │        │  ├─ Category.java
+│     │  │        │  ├─ Conversation.java
+│     │  │        │  ├─ Favorite.java
+│     │  │        │  ├─ Message.java
+│     │  │        │  ├─ Order.java
+│     │  │        │  ├─ Product.java
+│     │  │        │  ├─ ProductImage.java
+│     │  │        │  ├─ Report.java
+│     │  │        │  ├─ SmsCode.java
+│     │  │        │  ├─ User.java
+│     │  │        │  ├─ Violation.java
+│     │  │        │  └─ Warning.java
+│     │  │        ├─ mapper/
+│     │  │        │  ├─ AddressMapper.java
+│     │  │        │  ├─ AdminMapper.java
+│     │  │        │  ├─ CategoryMapper.java
+│     │  │        │  ├─ ConversationMapper.java
+│     │  │        │  ├─ FavoriteMapper.java
+│     │  │        │  ├─ MessageMapper.java
+│     │  │        │  ├─ OrderMapper.java
+│     │  │        │  ├─ ProductImageMapper.java
+│     │  │        │  ├─ ProductMapper.java
+│     │  │        │  ├─ ReportMapper.java
+│     │  │        │  ├─ SmsCodeMapper.java
+│     │  │        │  ├─ UserMapper.java
+│     │  │        │  ├─ ViolationMapper.java
+│     │  │        │  └─ WarningMapper.java
+│     │  │        ├─ service/
+│     │  │        │  ├─ AddressService.java
+│     │  │        │  ├─ AdminManagementService.java
+│     │  │        │  ├─ AdminService.java
+│     │  │        │  ├─ AiAuditService.java
+│     │  │        │  ├─ CategoryService.java
+│     │  │        │  ├─ ChatService.java
+│     │  │        │  ├─ FavoriteService.java
+│     │  │        │  ├─ OrderService.java
+│     │  │        │  ├─ ProductService.java
+│     │  │        │  ├─ SmsService.java
+│     │  │        │  └─ UserService.java
+│     │  │        └─ websocket/
+│     │  │           ├─ ChatWebSocketHandler.java
+│     │  │           ├─ WebSocketConfig.java
+│     │  │           └─ WebSocketHandshakeInterceptor.java
+│     │  └─ resources/
+│     │     ├─ application.yml
+│     │     └─ db/
+│     │        └─ init.sql
+│     └─ test/
+│        └─ java/
+│           └─ com/
+│              └─ campus_trade/
+│                 ├─ service/
+│                 │  ├─ ChatServiceTest.java
+│                 │  └─ ProductServiceTest.java
+│                 └─ websocket/
+│                    └─ ChatWebSocketHandlerTest.java
+├─ frontend/
+│  ├─ index.html
+│  ├─ package.json
+│  ├─ package-lock.json
+│  ├─ vite.config.js
+│  ├─ public/
+│  │  ├─ favicon.svg
+│  │  └─ sample-products/
+│  │     ├─ advanced-math-7.png
+│  │     ├─ cet4-vocabulary.png
+│  │     ├─ folding-chair.png
+│  │     ├─ ikbc-keyboard.png
+│  │     ├─ iphone-13-midnight.png
+│  │     ├─ kaoyan-english-yellow-book.png
+│  │     ├─ lancome-foundation.png
+│  │     ├─ macbook-pro-2021.png
+│  │     ├─ mini-fridge.png
+│  │     └─ nike-air-force-1.png
+│  └─ src/
+│     ├─ App.vue
+│     ├─ main.js
+│     ├─ api/
+│     │  ├─ address.js
+│     │  ├─ admin.js
+│     │  ├─ auth.js
+│     │  ├─ chat.js
+│     │  ├─ favorite.js
+│     │  ├─ order.js
+│     │  ├─ product.js
+│     │  └─ request.js
+│     ├─ assets/
+│     │  └─ global.css
+│     ├─ components/
+│     │  ├─ GlobalNotification.vue
+│     │  ├─ NavBar.vue
+│     │  └─ TabBar.vue
+│     ├─ router/
+│     │  └─ index.js
+│     ├─ stores/
+│     │  ├─ chat.js
+│     │  ├─ notification.js
+│     │  └─ user.js
+│     ├─ utils/
+│     │  └─ chinaRegions.js
+│     └─ views/
+│        ├─ admin/
+│        │  ├─ AdminCategoriesView.vue
+│        │  ├─ AdminDashboardView.vue
+│        │  ├─ AdminLoginView.vue
+│        │  ├─ AdminOrdersView.vue
+│        │  ├─ AdminProductsView.vue
+│        │  ├─ AdminReportsView.vue
+│        │  ├─ AdminSidebar.vue
+│        │  └─ AdminUsersView.vue
+│        └─ user/
+│           ├─ AddressView.vue
+│           ├─ ChatView.vue
+│           ├─ ForgotPasswordView.vue
+│           ├─ HomeView.vue
+│           ├─ LoginView.vue
+│           ├─ MyProductsView.vue
+│           ├─ MyReportsView.vue
+│           ├─ OrderConfirmView.vue
+│           ├─ OrderListView.vue
+│           ├─ ProductDetailView.vue
+│           ├─ ProfileView.vue
+│           ├─ PublishView.vue
+│           ├─ RegisterView.vue
+│           ├─ VerifyView.vue
+├─ CHANGELOG.md
+├─ README.md
+├─ RELEASE_NOTES.md
+├─ campus-trade-frontend-dist.zip
+└─ skills-lock.json
 ```
 
 ## 数据表（根据实体类推断）
